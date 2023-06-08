@@ -1,6 +1,8 @@
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
+// import "https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol";
+
 contract Certificates {
     
     uint256 public collegecnt = 0;
@@ -8,10 +10,10 @@ contract Certificates {
     uint256 public certificatecnt = 0;
     address public owner;
 
-    constructor() {
+    constructor(){
         owner = msg.sender;
-    }    
-
+    }
+    
     event clgAdded(uint indexed clg_id,string clg_name,uint times);
     event clgRegistered(uint indexed clg_id,bool isReg,uint times);
     event stuAdded(uint indexed stu_id,uint indexed aadhar,string stu_name,uint indexed clg_id,uint times);
@@ -52,10 +54,7 @@ contract Certificates {
     
     mapping(uint => Cert) public certy;
     
-    modifier onlyOwner() {
-        require(msg.sender == owner , "U are not owner");
-        _;
-    }
+    
     modifier onlyRegisteredCollege(address _addr){
         require(colleges[_addr].isregistered == true,"Not registered");
         _;
@@ -73,6 +72,11 @@ contract Certificates {
         require(unique == true,"already exists");
         _;
         
+    }
+
+    modifier onlyOwner(){
+        require(msg.sender == owner);
+        _;
     }
     
     modifier uniquestudent(uint _aadhar){
