@@ -20,7 +20,7 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.3.4",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^5.0.1",
     "reactstrap": "^9.1.10",
     "web3": "^1.2.2"
   },
